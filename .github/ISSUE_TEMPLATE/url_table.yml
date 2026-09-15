@@ -1,0 +1,57 @@
+name: URL 表校验失败（已知卡点）
+description: 报告 URL 表完整性校验问题，或提供有效的 hilink.cfg
+title: "[URL表] "
+labels: ["url-table"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 已知卡点
+
+        ```
+        LD_NOTICE hilink_url.c:158, not same, now is XXXXXXXX*, need:5ef8d8b8b*
+        LD_ERR    hilink_url.c:259, check urlFile integrity fail!
+        ```
+
+        **本模板用于收集信息，帮助找到有效的 URL 表。**
+
+  - type: textarea
+    id: error
+    attributes:
+      label: 你看到的完整错误
+      render: shell
+    validations:
+      required: true
+
+  - type: input
+    id: now-hash
+    attributes:
+      label: "`now is` 后面的哈希前缀"
+      description: 8-10 个字符
+      placeholder: "caeed1592"
+    validations:
+      required: true
+
+  - type: input
+    id: need-hash
+    attributes:
+      label: "`need` 后面的哈希前缀"
+      placeholder: "5ef8d8b8b"
+    validations:
+      required: true
+
+  - type: textarea
+    id: cfg-content
+    attributes:
+      label: 你当前放置的 hilink.cfg 内容
+      render: json
+    validations:
+      required: false
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: 你是否找到了可用的 URL 表？
+      description: 如果找到了，请贴出内容 —— 这会帮助所有人
+    validations:
+      required: false
