@@ -1,0 +1,71 @@
+name: 安装/运行问题
+description: 报告安装或运行 hwhomebridge 时遇到的问题
+title: "[问题] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈！请尽量填写完整，尤其是**诊断输出**部分。
+
+  - type: input
+    id: ha-version
+    attributes:
+      label: HA Core 版本
+      description: 设置 → 关于 里可以看到
+      placeholder: "2026.9.1"
+    validations:
+      required: true
+
+  - type: input
+    id: hardware
+    attributes:
+      label: 硬件与架构
+      description: 例如 Panther-X2 / Raspberry Pi 4 / x86 虚拟机
+      placeholder: "Panther-X2 (aarch64)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: libc
+    attributes:
+      label: 系统 libc 类型
+      description: HAOS 通常是 Alpine/musl；Supervised 在 Debian 上是 glibc
+      options:
+        - Alpine / musl（HAOS 默认）
+        - glibc（Debian / Ubuntu）
+        - 不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnose
+    attributes:
+      label: 诊断输出
+      description: |
+        运行诊断脚本并粘贴完整输出：
+        ```
+        docker exec homeassistant python3 /path/to/fixes/diagnose.py
+        ```
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 相关日志
+      description: |
+        `docker logs homeassistant --since 5m 2>&1 | grep -E 'LD_|hwhomebridge' | tail -50`
+      render: shell
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 已确认
+      options:
+        - label: 已安装 gcompat（musl 系统必需）
+        - label: 已创建 hilink_bridge/config/ 目录
+        - label: 已阅读 README 的三个卡点章节
