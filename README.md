@@ -59,6 +59,20 @@
 
 ---
 
+## 文档导航
+
+| 文件 | 内容 |
+|---|---|
+| `README.md`（本文）| 安装流程、三个卡点、快速上手 |
+| [`docs/architecture.md`](docs/architecture.md) | 三层配置架构、三级匹配引擎、值映射、扩展方式 |
+| [`docs/findings.md`](docs/findings.md) | 二进制分析、9MT* 适配器之谜、代码质量问题、URL 表深入分析、项目生命周期 |
+| [`docs/troubleshooting.md`](docs/troubleshooting.md) | 按症状排障（8 类症状 + 命令速查）|
+| [`docs/resources.md`](docs/resources.md) | 相关的公开资源与参考项目 |
+| `fixes/install.sh` | 一键安装脚本 |
+| `fixes/diagnose.py` | 环境诊断工具 |
+
+---
+
 ## 卡点一：glibc / musl 不兼容 ⭐
 
 ### 现象
